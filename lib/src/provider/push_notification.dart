@@ -40,8 +40,6 @@ class PushNotificationsProvider {
       onMessage: onMessage,
       onBackgroundMessage:
           Platform.isIOS ? null : PushNotificationsProvider.onBackgroundMessage,
-      onLaunch: onLaunch,
-      onResume: onResume,
     );
   }
 
@@ -49,45 +47,20 @@ class PushNotificationsProvider {
     print('====== onMessage ====== ');
     print('message: $message');
     // print('argumento: $argumento');
-    String argumento = 'no-data';
 
-    if (Platform.isAndroid) {
-      argumento = message['data']['comida'] ?? 'no-data';
-    } else {
-      argumento = message['comida'] ?? 'no-data';
-    }
+    final argumento = message['data']['comida'];
 
-    _mensajesStreamController.sink.add(argumento);
-  }
+    print(argumento);
 
-  Future<dynamic> onLaunch(Map<String, dynamic> message) async {
-    print('====== onLaunch ====== ');
-    // print('message: $message');
-    // print('argumento: $argumento');
-    String argumento = 'no-data';
+    // String argumento = 'no-data';
 
-    if (Platform.isAndroid) {
-      argumento = message['data']['comida'] ?? 'no-data';
-    } else {
-      argumento = message['comida'] ?? 'no-data';
-    }
+    // if (Platform.isAndroid) {
+    //   argumento = message['data']['comida'] ?? 'no-data';
+    // } else {
+    //   argumento = message['comida'] ?? 'no-data';
+    // }
 
-    _mensajesStreamController.sink.add(argumento);
-  }
-
-  Future<dynamic> onResume(Map<String, dynamic> message) async {
-    print('====== onResume ====== ');
-    // print('message: $message');
-    // print('argumento: $argumento');
-    String argumento = 'no-data';
-
-    if (Platform.isAndroid) {
-      argumento = message['data']['comida'] ?? 'no-data';
-    } else {
-      argumento = message['comida'] ?? 'no-data';
-    }
-
-    _mensajesStreamController.sink.add(argumento);
+    // _mensajesStreamController.sink.add(argumento);
   }
 
   dispose() {
